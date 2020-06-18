@@ -45,7 +45,7 @@ four   Nevada  2001  2.4
 five   Nevada  2002  2.9
 ```
 
-As the name suggests *reset_index*, reset the DataFrame index. The parameter *drop=True* prevents adding the old index as a new column, and *inplace=True* applies the change in place instead of creating a new object.
+As the name suggests *reset_index* reset the DataFrame index. The parameter *drop=True* prevents adding the old index as a new column, and *inplace=True* applies the change in place instead of creating a new object.
 
 ```python
 >>> df.reset_index(drop=True, inplace=True)
@@ -79,6 +79,79 @@ Displaying the last N rows
 3  Nevada  2001  2.4
 4  Nevada  2002  2.9
 ```
+
+Displaying a specific column
+
+```python
+>>> df['state']
+0      Ohio
+1      Ohio
+2      Ohio
+3    Nevada
+4    Nevada
+```
+
+Displaying multiple columns
+
+```python
+>>> df[['state','pop']]
+    state  pop
+0    Ohio  1.5
+1    Ohio  1.7
+2    Ohio  3.6
+3  Nevada  2.4
+4  Nevada  2.9
+```
+
+Slicing rows 
+
+```python
+>>> df[0:2]
+  state  year  pop
+0  Ohio  2000  1.5
+1  Ohio  2001  1.7
+
+>>> df[3:5]
+    state  year  pop
+3  Nevada  2001  2.4
+4  Nevada  2002  2.9
+```
+
+## Filtering rows
+
+The output of conditional expressions is a pandas Series of boolean values with the same number of rows as the original DataFrame, and it can be used to filter DataFrames when enclosed in brackets, so only rows with *True* values are returned.
+
+```python
+>>> df['state'] == 'Ohio'
+0     True
+1     True
+2     True
+3    False
+4    False
+
+>>> df[df['state'] == 'Ohio']
+  state  year  pop
+0  Ohio  2000  1.5
+1  Ohio  2001  1.7
+2  Ohio  2002  3.6
+
+>>> df[df['pop'] > 2.5]
+    state  year  pop
+2    Ohio  2002  3.6
+4  Nevada  2002  2.9
+```
+
+Combining multiple conditional statements requires enclosing them by parenthesis. Also, it should use the logical operators & and | instead of and/or.
+
+```python
+>>> df[(df['year'] >= 2001) & (df['pop'] > 2.0)]
+    state  year  pop
+2    Ohio  2002  3.6
+3  Nevada  2001  2.4
+4  Nevada  2002  2.9
+```
+
+
 ## Config 
 Showing DataFrame column names
 
