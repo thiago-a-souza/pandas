@@ -227,6 +227,21 @@ pop      2.9
 2  Ohio  3.6
 ```
 
+### at
+
+*at* is useful to set/get a single value, passing the row number and the column label as argument
+
+```python
+# returning the value for the column state at index 2
+>>> df.at[2, 'state']
+'Ohio'
+
+# changing a cell value
+>>> df.at[2, 'state'] = 'OHIO'
+>>> df.at[2, 'state']
+'OHIO'
+```
+
 ## Config 
 Showing DataFrame column names
 
