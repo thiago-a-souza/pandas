@@ -154,18 +154,22 @@ Combining multiple conditional statements requires enclosing them by parenthesis
 ### iloc
 
 ```python
+# accessing row number 2 and returning a Series
 >>> df.iloc[2]
 state    Ohio
 year     2002
 pop       3.6
 
+# single pair of brackets returns a Series
 >>> type(df.iloc[2])
 <class 'pandas.core.series.Series'>
 
+# accessing row number 2 and returning a DataFrame
 >>> df.iloc[[2]]
   state  year  pop
 2  Ohio  2002  3.6
 
+# double pair of brackets returns a DataFrame
 >>> type(df.iloc[[2]])
 <class 'pandas.core.frame.DataFrame'>
 ```
@@ -173,12 +177,14 @@ pop       3.6
 Slicing with *iloc*
 
 ```python
+# showing rows in the interval [0-2]
 >>> df.iloc[:3]
   state  year  pop
 0  Ohio  2000  1.5
 1  Ohio  2001  1.7
 2  Ohio  2002  3.6
 
+# showing rows in the interval [1-2]
 >>> df.iloc[1:3]
   state  year  pop
 1  Ohio  2001  1.7
@@ -188,12 +194,29 @@ Slicing with *iloc*
 *iloc* also allows accessing a specific column position:
 
 ```python
+# accessing cell (2, 1)
 >>> df.iloc[2, 1]
 2002
 
+# slicing columns
 >>> df.iloc[4, 1:3]
 year    2002
 pop      2.9
+
+# colon without interval selects all rows or columns
+>>> df.iloc[:, 1:3]
+   year  pop
+0  2000  1.5
+1  2001  1.7
+2  2002  3.6
+3  2001  2.4
+4  2002  2.9
+
+# accessing rows/columns using an array of indexes
+>>> df.iloc[[0,2], [0,2]]
+  state  pop
+0  Ohio  1.5
+2  Ohio  3.6
 ```
 
 ## Config 
