@@ -242,6 +242,18 @@ pop      2.9
 'OHIO'
 ```
 
+### isin
+
+*isin* allows filtering values from an array
+
+```python
+>>> df[df['year'].isin([2000, 2001])]
+    state  year  pop
+0    Ohio  2000  1.5
+1    Ohio  2001  1.7
+3  Nevada  2001  2.4
+```
+
 ## Config 
 Showing DataFrame column names
 
