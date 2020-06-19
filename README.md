@@ -151,6 +151,50 @@ Combining multiple conditional statements requires enclosing them by parenthesis
 4  Nevada  2002  2.9
 ```
 
+### iloc
+
+```python
+>>> df.iloc[2]
+state    Ohio
+year     2002
+pop       3.6
+
+>>> type(df.iloc[2])
+<class 'pandas.core.series.Series'>
+
+>>> df.iloc[[2]]
+  state  year  pop
+2  Ohio  2002  3.6
+
+>>> type(df.iloc[[2]])
+<class 'pandas.core.frame.DataFrame'>
+```
+
+Slicing with *iloc*
+
+```python
+>>> df.iloc[:3]
+  state  year  pop
+0  Ohio  2000  1.5
+1  Ohio  2001  1.7
+2  Ohio  2002  3.6
+
+>>> df.iloc[1:3]
+  state  year  pop
+1  Ohio  2001  1.7
+2  Ohio  2002  3.6
+```
+
+*iloc* also allows accessing a specific column position:
+
+```python
+>>> df.iloc[2, 1]
+2002
+
+>>> df.iloc[4, 1:3]
+year    2002
+pop      2.9
+```
 
 ## Config 
 Showing DataFrame column names
