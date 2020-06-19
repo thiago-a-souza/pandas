@@ -89,6 +89,10 @@ Displaying a specific column
 2      Ohio
 3    Nevada
 4    Nevada
+
+# selecting a single column with a single pair of brackets return a Series
+>>> type(df['state'])
+<class 'pandas.core.series.Series'>
 ```
 
 Displaying multiple columns
@@ -101,6 +105,10 @@ Displaying multiple columns
 2    Ohio  3.6
 3  Nevada  2.4
 4  Nevada  2.9
+
+# selecting a single column with a single pair of brackets return a DataFrame
+>>> type(df[['state','pop']])
+<class 'pandas.core.frame.DataFrame'>
 ```
 
 Slicing rows 
