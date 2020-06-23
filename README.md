@@ -257,6 +257,25 @@ pop      2.9
 1    Ohio  2001  1.7
 3  Nevada  2001  2.4
 ```
+## Sorting data
+
+```python
+>>> df.sort_values(by='year')
+    state  year  pop
+0    Ohio  2000  1.5
+1    Ohio  2001  1.7
+3  Nevada  2001  2.4
+2    Ohio  2002  3.6
+4  Nevada  2002  2.9
+
+>>> df.sort_values(by=['state', 'pop'], ascending=False)
+    state  year  pop
+2    Ohio  2002  3.6
+1    Ohio  2001  1.7
+0    Ohio  2000  1.5
+4  Nevada  2002  2.9
+3  Nevada  2001  2.4
+```
 
 ## Config 
 Showing DataFrame column names
