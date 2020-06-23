@@ -180,6 +180,10 @@ pop       3.6
 # double pair of brackets returns a DataFrame
 >>> type(df.iloc[[2]])
 <class 'pandas.core.frame.DataFrame'>
+
+# accessing a specific row/column
+>>> df['year'].iloc[2]
+2002
 ```
 
 Slicing with *iloc*
@@ -275,6 +279,56 @@ Showing the number of rows and columns from a DataFrame
 ```python
 >>> df.shape
 (5, 3)
+```
+
+## Grouping data
+
+The Pandas *groupby* function basically splits the data into groups passed as arguments, and then all numeric fields can be aggregated using functions such as *mean*, *sum*, *size*, etc.
+
+```python
+# splitting data with groupby
+>>> groups = df.groupby(['state'])
+>>> type(groups)
+<class 'pandas.core.groupby.generic.DataFrameGroupBy'>
+
+# if no column is selected from the dataframe, it applies the function (e.g. sum) to all numeric fields
+>>> df.groupby(['state']).sum()
+        year  pop
+state
+Nevada  4003  5.3
+Ohio    6003  6.8
+
+# selecting columns and applying an aggregation
+>>> df[['pop', 'state']].groupby(['state']).sum()
+        pop
+state
+Nevada  5.3
+Ohio    6.8
+
+# checking the size of each group
+>>> df.groupby(['state']).size()
+state
+Nevada    2
+Ohio      3
+
+# finding the min population per year
+>>> df[['year', 'pop']].groupby(['year']).min()
+      pop
+year
+2000  1.5
+2001  1.7
+2002  2.9
+```
+
+
+Counting occurrences grouped by year. The *size* function returns the size of each group and creates a new column named that can be renamed to a more meaningful name.
+
+```python
+>>> df.groupby(['year']).size().reset_index().rename(columns={0 : 'count'})
+   year  count
+0  2000      1
+1  2001      2
+2  2002      2
 ```
 
 ## Writing DataFrames
