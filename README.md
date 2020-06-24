@@ -349,6 +349,37 @@ Counting occurrences grouped by year. The *size* function returns the size of ea
 1  2001      2
 2  2002      2
 ```
+## Merging data
+
+```python
+# creating source dataframes
+>>> emp = pd.DataFrame({'name': ['john', 'peter', 'andrew', 'david', 'paul', 'philip'],
+...                     'department_id' : [3, 1, 1, 2, 3, None]})
+>>> dept = pd.DataFrame({'deptname' : ['it', 'marketing', 'hr'], 'deptid' : [1, 2, 3] })
+
+
+# inner join between emp and dept
+>>> inner_df = pd.merge(emp, dept, how='inner', left_on=['department_id'], right_on=['deptid'])
+>>> inner_df.sort_values(by='deptid')
+     name  department_id   deptname  deptid
+2   peter            1.0         it       1
+3  andrew            1.0         it       1
+4   david            2.0  marketing       2
+0    john            3.0         hr       3
+1    paul            3.0         hr       3
+
+# left outer join between emp and dept
+>>> left_outer_df = pd.merge(emp, dept, how='left', left_on=['department_id'], right_on=['deptid'])
+>>> left_outer_df.sort_values(by='deptid')
+     name  department_id   deptname  deptid
+1   peter            1.0         it     1.0
+2  andrew            1.0         it     1.0
+3   david            2.0  marketing     2.0
+0    john            3.0         hr     3.0
+4    paul            3.0         hr     3.0
+5  philip            NaN        NaN     NaN                                   
+```
+
 
 ## Writing DataFrames
 
