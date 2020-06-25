@@ -159,7 +159,47 @@ Combining multiple conditional statements requires enclosing them by parenthesis
 4  Nevada  2002  2.9
 ```
 
+### loc
+
+*loc* returns a DataFrame with a given label. Even though labels can be numeric, it doesn't mean that the label is the row number.
+
+```python
+>>> data = {'state': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada'],
+...         'year': [2000, 2001, 2002, 2001, 2002],
+...         'pop': [1.5, 1.7, 3.6, 2.4, 2.9]}
+>>> df = pd.DataFrame(data, index=['one', 'two', 'three', 'four', 'five'])
+
+>>> df
+        state  year  pop
+one      Ohio  2000  1.5
+two      Ohio  2001  1.7
+three    Ohio  2002  3.6
+four   Nevada  2001  2.4
+five   Nevada  2002  2.9
+
+# accessing a row with a specific label
+>>> df.loc['two']
+state    Ohio
+year     2001
+pop       1.7
+
+# the second argument (optional) specifies the column(s) displayed
+>>> df.loc['four', ['state', 'pop']]
+state    Nevada
+pop         2.4
+
+# accessing an interval of rows using the slice operator
+>>> df.loc['two' : 'three']
+      state  year  pop
+two    Ohio  2001  1.7
+three  Ohio  2002  3.6
+``` 
+
+
 ### iloc
+
+Unlike *loc*, which returns a DataFrame with a specific label, *iloc* allows accessing a DataFrame at a particular index.
+
 
 ```python
 # accessing row number 2 and returning a Series
@@ -277,7 +317,7 @@ pop      2.9
 3  Nevada  2001  2.4
 ```
 
-## Config 
+## Structures
 Showing DataFrame column names
 
 ```python
