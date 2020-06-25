@@ -351,6 +351,8 @@ Counting occurrences grouped by year. The *size* function returns the size of ea
 ```
 ## Merging data
 
+Merging in Pandas is similar to SQL joins. There are serveral parameters allowed, but the follow examples cover some common use cases.
+
 ```python
 # creating source dataframes
 >>> emp = pd.DataFrame({'name': ['john', 'peter', 'andrew', 'david', 'paul', 'philip'],
