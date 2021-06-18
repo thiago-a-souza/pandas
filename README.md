@@ -430,3 +430,20 @@ Writing DataFrame into CSV without exporting index values
 ```python
 df.to_csv('data.csv', index = False)
 ```
+
+## Writing indented json file
+
+
+```python
+import json
+with open('test.json', 'w') as f:
+    json.dump(data, f,  indent=4)
+```
+
+## Reading json into a dictionary
+
+```python
+import json
+with open(r'test.json', 'r') as f:
+    data = json.load(f)
+```    
