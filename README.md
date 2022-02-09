@@ -10,10 +10,14 @@ Import Pandas library
 
 ## Creating DataFrames
 
-Creating a DataFrame from a CSV file
+Creating a DataFrame from a file
 
 ```python
+# Reading from CSV file
 >>> df = pd.read_csv('/home/thiago/my_file.csv')
+
+# Reading from pickle
+>>> df = pd.read_pickle('/home/thiago/my_file.pickle')
 ```
 
 Creating a DataFrame from a dictionary
